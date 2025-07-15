@@ -16,6 +16,7 @@ export const httpServer = () => {
 
   process.on('uncaughtException', (e: unknown) => {
     console.log('Uncaught Exception', e);
+    console.log(e);
     logger.error(e);
     if (server) {
       server.close(() => {
