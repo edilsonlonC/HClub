@@ -5,20 +5,28 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./dist/index.js",
-    "start:dev": "nodemon src/index.ts --inspect",
+    "start:dev": "nodemon -r dotenv/config src/index.ts --inspect",
     "start:dev:pretty": "npm run start:dev | pino-pretty",
     "prepare": "husky",
     "build": "tsc",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
-    "test": "jest --detectOpenHandles --forceExit"
+    "test": "jest --detectOpenHandles --forceExit",
+    "create:migration:db1": "typeorm migration:create ./src/infrastructure/database/principal-db/migrations/${npm_config_name}",
+    "create:migration:db2": "typeorm migration:create ./src/infrastructure/database/secondary-db/migrations/${npm_config_name}",
+    "migrate:db1": "typeorm-ts-node-commonjs migration:run -d ./src/infrastructure/database/principal-db/data-source.ts",
+    "migrate:db2": "typeorm-ts-node-commonjs migration:run -d ./src/infrastructure/database/secondary-db/data-source.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^17.2.0",
     "express": "^5.1.0",
+    "mysql2": "^3.14.2",
     "pino": "^9.7.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.25",
     "typescipt": "^1.0.0"
   },
   "devDependencies": {
@@ -28,6 +36,7 @@
     "@types/express": "^5.0.3",
     "@types/http-status-codes": "^1.2.0",
     "@types/jest": "^29.5.14",
+    "@types/node": "^24.0.13",
     "@typescript-eslint/eslint-plugin": "^8.11.0",
     "@typescript-eslint/parser": "^8.11.0",
     "eslint": "^9.9.1",

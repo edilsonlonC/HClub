@@ -2,15 +2,17 @@ import { Application } from 'express';
 import { Server } from 'http';
 import { initApp } from './app';
 import { createLogger } from '../logger';
+import { initDb } from '../database/principal-db';
 
 const port = process.env.PORT || 3000;
 
 let server: Server;
 
-export const httpServer = () => {
+export const httpServer = async () => {
   const logger = createLogger();
-  const app: Application = initApp();
-  server = app.listen(port, () => {
+  const app: Application = await initApp();
+  server = app.listen(port, async () => {
+    await initDb();
     logger.info(`Server is running on port ${port}`);
   });
 
