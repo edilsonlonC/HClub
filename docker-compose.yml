@@ -1,0 +1,45 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: DockerFile
+    ports:
+      - 3000:3000
+    networks:
+      - home_club_interview
+    depends_on:
+      - principal_db
+      - second_db
+  principal_db:
+    image: mysql
+    restart: always
+    networks:
+      - home_club_interview
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: principal_db_HC
+      MYSQL_USER: home_club_interview
+      MYSQL_PASSWORD: home_club_interview
+  second_db:
+    image: mysql
+    restart: always
+    networks:
+      - home_club_interview
+    ports:
+      - 3307:3306
+    volumes:
+      - mysql_data2:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: secondary_db_HC
+      MYSQL_USER: second_db
+      MYSQL_PASSWORD: second_db
+networks:
+  home_club_interview:
+volumes:
+  mysql_data:
+  mysql_data2:

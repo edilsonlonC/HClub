@@ -5,10 +5,10 @@ let app: Application;
 const addMiddlewares = () => {
   app.use(express.json());
 };
-export const initApp = () => {
+export const initApp = async () => {
   app = express();
-  const router: Router = initRouter();
-  app.use(router);
+  const router: Router = await initRouter();
   addMiddlewares();
+  app.use(router);
   return app;
 };
