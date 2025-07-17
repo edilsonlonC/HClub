@@ -1,3 +1,5 @@
+import { Rate } from './rate.model';
+
 export enum ApartmentType {
   CORPORATE = 'corporate',
   TOURISTIC = 'touristic',
@@ -18,6 +20,10 @@ export class Apartment {
     private longitude: number,
     private status: ApartmentStatus,
     private id?: string,
+    private distance?: number,
+    private rates?: Rate[],
+    private description?: string,
+    private imageUrl?: string,
   ) {}
   getId(): string | undefined {
     return this.id;
@@ -45,5 +51,17 @@ export class Apartment {
   }
   getStatus(): ApartmentStatus {
     return this.status;
+  }
+  getDistance(): number | undefined {
+    return this.distance;
+  }
+  getRates(): Rate[] | undefined {
+    return this.rates;
+  }
+  getDescription(): string | undefined {
+    return this.description;
+  }
+  getImageUrl(): string | undefined {
+    return this.imageUrl;
   }
 }

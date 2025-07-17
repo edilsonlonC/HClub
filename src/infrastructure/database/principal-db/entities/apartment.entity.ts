@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, Point } from 'typeorm';
 import { Rate } from './rate.entity';
 import { Reservation } from './reservation.entity';
 
@@ -40,12 +40,21 @@ export class Apartment {
 
   @Column({ type: 'enum', enum: ApartmentStatus })
   status: ApartmentStatus;
+  @Column({
+    type: 'point',
+    spatialFeatureType: 'POINT',
+    srid: 4326,
+  })
+  location: string;
 
   @OneToMany(() => Rate, (rate) => rate.apartment)
   rates: Rate[];
 
   @OneToMany(() => Reservation, (reservation) => reservation.apartment)
   reservations: Reservation[];
+
+  @Column({ select: false })
+  distance?: number;
 
   constructor(
     name: string,

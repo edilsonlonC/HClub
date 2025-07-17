@@ -15,7 +15,9 @@
     "create:migration:db1": "typeorm migration:create ./src/infrastructure/database/principal-db/migrations/${npm_config_name}",
     "create:migration:db2": "typeorm migration:create ./src/infrastructure/database/secondary-db/migrations/${npm_config_name}",
     "migrate:db1": "typeorm-ts-node-commonjs migration:run -d ./src/infrastructure/database/principal-db/data-source.ts",
-    "migrate:db2": "typeorm-ts-node-commonjs migration:run -d ./src/infrastructure/database/secondary-db/data-source.ts"
+    "migrate:db2": "typeorm-ts-node-commonjs migration:run -d ./src/infrastructure/database/secondary-db/data-source.ts",
+    "revert:migration:db1": "typeorm-ts-node-commonjs  migration:revert -d ./src/infrastructure/database/principal-db/data-source.ts",
+    "revert:migration:db2": "typeorm-ts-node-commonjs  migration:revert -d ./src/infrastructure/database/secondary-db/data-source.ts"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +25,7 @@
   "dependencies": {
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
+    "joi": "^17.13.3",
     "mysql2": "^3.14.2",
     "pino": "^9.7.0",
     "reflect-metadata": "^0.2.2",

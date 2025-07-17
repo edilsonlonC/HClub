@@ -1,3 +1,5 @@
+import { RateResponseDto } from './rate.response.dto';
+
 export class ApartmentResponseDTO {
   constructor(
     private id: string,
@@ -9,6 +11,10 @@ export class ApartmentResponseDTO {
     private latitude: number,
     private longitude: number,
     private status: string,
+    private distance?: number,
+    private rates?: RateResponseDto[],
+    private description?: string,
+    private imageUrl?: string,
   ) {}
   getId(): string {
     return this.id;
@@ -36,5 +42,17 @@ export class ApartmentResponseDTO {
   }
   getStatus(): string {
     return this.status;
+  }
+  getDistance(): number | undefined {
+    return this.distance;
+  }
+  getRates(): RateResponseDto[] | undefined {
+    return this.rates;
+  }
+  getDescription(): string | undefined {
+    return this.description;
+  }
+  getImageUrl(): string | undefined {
+    return this.imageUrl;
   }
 }

@@ -1,0 +1,25 @@
+import { Apartment as ApartmentModel } from '../domain/models/apartment.model';
+import { ApartmentRepository } from '../domain/repository/apartment.repository';
+
+export class ApartmentUseCase {
+  constructor(private readonly apartmentRepository: ApartmentRepository) {}
+  async createApartment(apartmentModel: ApartmentModel): Promise<ApartmentModel> {
+    return this.apartmentRepository.create(apartmentModel);
+  }
+  async findById(id: string): Promise<ApartmentModel | null> {
+    return this.apartmentRepository.findById(id);
+  }
+  async findByLocation(
+    latitude: number,
+    longitude: number,
+    page: number = 1,
+    limit: number = 10,
+  ): Promise<{
+    data: ApartmentModel[];
+    total: number;
+    page: number;
+    totalPages: number;
+  }> {
+    return this.apartmentRepository.findByLocation(latitude, longitude, page, limit);
+  }
+}

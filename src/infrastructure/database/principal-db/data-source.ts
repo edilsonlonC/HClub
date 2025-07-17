@@ -12,4 +12,5 @@ export default new DataSource({
   entities: [__dirname + '/entities/**/*.ts'],
   migrations: [__dirname + '/migrations/**/*.ts'],
   logging: false,
+  legacySpatialSupport: false,
 });
