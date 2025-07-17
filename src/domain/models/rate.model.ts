@@ -8,9 +8,9 @@ export class Rate {
     private startDate: string,
     private endDate: string,
     private price: number,
-    private rateType: RateType,
     private apartmentId: string,
     private id?: string,
+    private rateType?: RateType,
   ) {}
 
   getId(): string | undefined {
@@ -25,10 +25,13 @@ export class Rate {
   getPrice(): number {
     return this.price;
   }
-  getRateType(): RateType {
+  getRateType(): RateType | undefined {
     return this.rateType;
   }
   getApartmentId(): string {
     return this.apartmentId;
+  }
+  setType(rateType: RateType) {
+    this.rateType = rateType;
   }
 }

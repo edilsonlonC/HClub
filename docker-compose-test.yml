@@ -1,0 +1,34 @@
+services:
+  principal_db:
+    image: mysql:8.0
+    restart: always
+    networks:
+      - home_club_interview
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: principal_db_HC
+      MYSQL_USER: home_club_interview
+      MYSQL_PASSWORD: home_club_interview
+  second_db:
+    image: mysql:8.0
+    restart: always
+    networks:
+      - home_club_interview
+    ports:
+      - 3307:3306
+    volumes:
+      - mysql_data2:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: secondary_db_HC
+      MYSQL_USER: second_db
+      MYSQL_PASSWORD: second_db
+networks:
+  home_club_interview:
+volumes:
+  mysql_data:
+  mysql_data2:

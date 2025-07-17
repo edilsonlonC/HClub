@@ -9,6 +9,7 @@ import { EntityAlreadyExistError } from '../../../domain/errors/entity.already.e
 export const handlerError = (error: HttpError | Error, _: Request, res: Response, __: NextFunction) => {
   const logger: Logger = createLogger();
   logger.error(error);
+  console.log(error);
 
   if (error instanceof NotFoundEntityError) {
     return res.status(404).json(notFound(error.message));
