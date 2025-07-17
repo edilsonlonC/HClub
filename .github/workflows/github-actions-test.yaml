@@ -3,6 +3,25 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      principal_db:
+        image: mysql:8.0
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: principal_db_HC
+          MYSQL_USER: home_club_interview
+          MYSQL_PASSWORD: home_club_interview
+      second_db:
+        image: mysql:8.0
+        ports:
+          - 3307:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: secondary_db_HC
+          MYSQL_USER: second_db
+          MYSQL_PASSWORD: second_db
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js

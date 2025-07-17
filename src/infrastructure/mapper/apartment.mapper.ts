@@ -64,7 +64,7 @@ export class ApartmentMapper {
               rate.getStartDate(),
               rate.getEndDate(),
               rate.getPrice(),
-              rate.getRateType(),
+              rate.getRateType()!,
               rate.getApartmentId(),
             ),
         ),

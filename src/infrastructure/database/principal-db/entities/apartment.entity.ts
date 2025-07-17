@@ -53,9 +53,6 @@ export class Apartment {
   @OneToMany(() => Reservation, (reservation) => reservation.apartment)
   reservations: Reservation[];
 
-  @Column({ select: false })
-  distance?: number;
-
   constructor(
     name: string,
     address: string,

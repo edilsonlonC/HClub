@@ -1,0 +1,11 @@
+process.env.PORT = '3000';
+process.env.PRINCIPAL_DB_HOST = 'localhost';
+process.env.PRINCIPAL_DB_USER = 'root';
+process.env.PRINCIPAL_DB_PASSWORD = 'root';
+process.env.PRINCIPAL_DB_PORT = '3306';
+process.env.PRINCIPAL_DB_NAME = 'principal_db_HC';
+process.env.SECONDARY_DB_HOST = 'localhost';
+process.env.SECONDARY_DB_USER = 'root';
+process.env.SECONDARY_DB_PASSWORD = 'root';
+process.env.SECONDARY_DB_PORT = '3307';
+process.env.SECONDARY_DB_NAME = 'secondary_db_HC';

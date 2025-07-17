@@ -8,7 +8,6 @@ export class RateCreateDto {
     private startDate: string,
     private endDate: string,
     private price: number,
-    private rateType: RateTypeDTO,
     private apartmentId: string,
   ) {}
   getStartDate(): string {
@@ -19,9 +18,6 @@ export class RateCreateDto {
   }
   getPrice(): number {
     return this.price;
-  }
-  getRateType(): string {
-    return this.rateType;
   }
   getApartmentId(): string {
     return this.apartmentId;

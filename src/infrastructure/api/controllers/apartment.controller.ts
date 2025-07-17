@@ -7,7 +7,7 @@ import { createLogger } from '../../logger';
 import { apartmentSchema } from '../validators/apartment.validator';
 import { badRequest } from '../errors';
 import { ApartmentType } from '../../../domain/models/apartment.model';
-
+import httpStatus from 'http-status-codes';
 export class ApartmentController {
   private readonly logger: Logger = createLogger();
   constructor(
@@ -35,7 +35,7 @@ export class ApartmentController {
       const apartmentModel = this.apartmentMapper.apartmentCreateDTOToApartmentModel(apartmentCreateDTO);
       const apartmentModelCreated = await this.apartmentUseCase.createApartment(apartmentModel);
       this.logger.info(`Apartment created with id ${apartmentModelCreated.getId()}`);
-      return response.status(200).json({
+      return response.status(httpStatus.CREATED).json({
         message: 'Apartment created successfully',
         apartment: this.apartmentMapper.apartmentModelToApartmentResponseDTO(apartmentModelCreated),
       });

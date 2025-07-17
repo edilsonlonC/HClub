@@ -11,7 +11,7 @@ export class RateMapper {
       rateModel.getStartDate(),
       rateModel.getEndDate(),
       rateModel.getPrice(),
-      rateModel.getRateType(),
+      rateModel.getRateType()!,
       rateModel.getApartmentId(),
     );
   }
@@ -20,8 +20,9 @@ export class RateMapper {
       rateEntity.startDate,
       rateEntity.endDate,
       rateEntity.price,
-      rateEntity.rateType,
       rateEntity.apartmentId,
+      rateEntity.id,
+      rateEntity.rateType,
     );
   }
   rateCreateDTOToRateModel(rateCreateDTO: RateCreateDto): RateModel {
@@ -29,7 +30,6 @@ export class RateMapper {
       rateCreateDTO.getStartDate(),
       rateCreateDTO.getEndDate(),
       rateCreateDTO.getPrice(),
-      rateCreateDTO.getRateType() as RateType,
       rateCreateDTO.getApartmentId(),
     );
   }
@@ -39,7 +39,7 @@ export class RateMapper {
       rateModel.getStartDate(),
       rateModel.getEndDate(),
       rateModel.getPrice(),
-      rateModel.getRateType(),
+      rateModel.getRateType()!,
       rateModel.getApartmentId(),
     );
   }

@@ -26,7 +26,6 @@ export class RateController {
         request.body.startDate,
         request.body.endDate,
         request.body.price,
-        request.body.rateType,
         request.body.apartmentId,
       );
       const rateModel: RateModel = this.rateMapper.rateCreateDTOToRateModel(rateCreateDto);
