@@ -2,12 +2,21 @@ import { Entity, PrimaryColumn, Column } from 'typeorm';
 
 @Entity()
 export class PropertyMetadata {
-  @PrimaryColumn({ type: 'char', length: 36 })
-  property_id: string; // debe coincidir con apartment.id de DB1
-
+  @PrimaryColumn({
+    name: 'property_id',
+  })
+  propertyId: string;
   @Column('text')
   description: string;
 
-  @Column({ type: 'varchar', length: 2048 })
-  image_url: string;
+  @Column({
+    name: 'image_url',
+  })
+  imageUrl: string;
+
+  constructor(propertyId: string, description: string, imageUrl: string) {
+    this.propertyId = propertyId;
+    this.description = description;
+    this.imageUrl = imageUrl;
+  }
 }

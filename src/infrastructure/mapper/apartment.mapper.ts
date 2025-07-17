@@ -1,6 +1,8 @@
 import { Apartment as ApartmentModel, ApartmentStatus, ApartmentType } from '../../domain/models/apartment.model';
+import { Rate } from '../../domain/models/rate.model';
 import { ApartmentCreateDTO } from '../api/DTO/apartment.create.dto';
 import { ApartmentResponseDTO } from '../api/DTO/apartment.response.dto';
+import { RateResponseDto } from '../api/DTO/rate.response.dto';
 import { Apartment as ApartmentEntity } from '../database/principal-db/entities/apartment.entity';
 export class ApartmentMapper {
   apartmentModelToApartmentEntity(apartmentModel: ApartmentModel): ApartmentEntity {
@@ -52,6 +54,40 @@ export class ApartmentMapper {
       apartmentModel.getLatitude(),
       apartmentModel.getLongitude(),
       apartmentModel.getStatus(),
+      apartmentModel.getDistance(),
+      apartmentModel
+        .getRates()
+        ?.map(
+          (rate) =>
+            new RateResponseDto(
+              rate.getId()!,
+              rate.getStartDate(),
+              rate.getEndDate(),
+              rate.getPrice(),
+              rate.getRateType(),
+              rate.getApartmentId(),
+            ),
+        ),
+      apartmentModel.getDescription(),
+      apartmentModel.getImageUrl(),
+    );
+  }
+  apartmentRawtoApartmentModel(apartmentRaw: any): ApartmentModel {
+    return new ApartmentModel(
+      apartmentRaw.name,
+      apartmentRaw.address,
+      apartmentRaw.type,
+      apartmentRaw.city,
+      apartmentRaw.country,
+      apartmentRaw.latitude,
+      apartmentRaw.longitude,
+      apartmentRaw.status,
+      apartmentRaw.id,
+      apartmentRaw.distance,
+      apartmentRaw.rates?.map(
+        (rateRaw: any) =>
+          new Rate(rateRaw.startDate, rateRaw.endDate, rateRaw.price, rateRaw.rateType, rateRaw.apartmentId),
+      ),
     );
   }
 }
